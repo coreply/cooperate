@@ -2,8 +2,10 @@
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/app_accessibility_description"
     android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged|typeViewClicked|typeViewFocused"
-    android:accessibilityFlags=""
+    android:accessibilityFlags="flagRequestAccessibilityButton"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:canRetrieveWindowContent="true"
+    android:canPerformGestures="true"
+    android:canTakeScreenshot="true"
     android:notificationTimeout="0"
-    android:settingsActivity="app.coreply.coreplyapp.SettingsActivity"/>
+    android:settingsActivity="app.coreply.cooperate.SettingsActivity"/>
