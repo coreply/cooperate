@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.coreply.coreplyapp">
+    package="app.coreply.cooperate">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name="app.coreply.coreplyapp.MainApplication"
+        android:name="app.coreply.cooperate.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:exported="true"
-            android:name="app.coreply.coreplyapp.SettingsActivity"
+            android:name="app.coreply.cooperate.SettingsActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
 
         <service
             android:exported="false"
-            android:name="app.coreply.coreplyapp.applistener.AppListener"
+            android:name="app.coreply.cooperate.applistener.AppListener"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -41,9 +41,16 @@
         </service>
 
         <activity
-            android:name="app.coreply.coreplyapp.WelcomeActivity"
+            android:name="app.coreply.cooperate.WelcomeActivity"
             android:label="Welcome Activity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="app.coreply.cooperate.PromptInputActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:taskAffinity=""
+            android:excludeFromRecents="true" />
 
     </application>
 
