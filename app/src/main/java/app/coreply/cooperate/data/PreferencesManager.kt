@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp.data
+package app.coreply.cooperate.data
 
 import android.content.Context
 import androidx.compose.runtime.MutableState
@@ -47,12 +47,12 @@ class PreferencesManager private constructor(private val dataStore: DataStore<Pr
         // Default values
         private const val DEFAULT_MASTER_SWITCH = true
         private const val DEFAULT_API_TYPE = "custom"
-        private const val DEFAULT_API_URL = "https://api.openai.com/v1/"
+        private const val DEFAULT_API_URL = "https://openrouter.ai/api/v1/"
         private const val DEFAULT_API_KEY = ""
-        private const val DEFAULT_MODEL_NAME = "gpt-4.1-mini"
-        private const val DEFAULT_SYSTEM_PROMPT = "You are an AI texting assistant. You will be given a list of text messages between the user (indicated by 'Message I sent:'), and other people (indicated by their names or simply 'Message I received:'). You may also receive a screenshot of the conversation. Your job is to suggest the next message the user should send. Match the tone and style of the conversation. The user may request the message start or end with a certain prefix (both could be parts of a longer word) . The user may quote a specific message. In this case, make sure your suggestions are about the quoted message.\nOutput the suggested text only. Do not output anything else. Do not surround output with quotation marks"
-        private const val DEFAULT_TEMPERATURE = 0.3f
-        private const val DEFAULT_TOP_P = 0.5f
+        private const val DEFAULT_MODEL_NAME = "anthropic/claude-haiku-4.5"
+        private const val DEFAULT_SYSTEM_PROMPT = "You are operating an android phone. Use the given screenshot and call the tools."
+        private const val DEFAULT_TEMPERATURE = 0.5f
+        private const val DEFAULT_TOP_P = 1.0f
     }
 
     // Mutable state for each preference field

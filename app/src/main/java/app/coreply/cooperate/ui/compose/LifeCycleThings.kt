@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp.ui.compose
+package app.coreply.cooperate.ui.compose
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

@@ -1,15 +1,13 @@
-package app.coreply.coreplyapp.ui.compose
+package app.coreply.cooperate.ui.compose
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,9 +16,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import app.coreply.coreplyapp.WelcomeActivity
-import app.coreply.coreplyapp.ui.viewmodel.SettingsViewModel
-import app.coreply.coreplyapp.utils.GlobalPref
+import app.coreply.cooperate.WelcomeActivity
+import app.coreply.cooperate.ui.viewmodel.SettingsViewModel
+import app.coreply.cooperate.utils.GlobalPref
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -59,7 +57,7 @@ fun ModernSettingsScreen(
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = "Coreply Service",
+                text = "Cooperate Service",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -72,11 +70,11 @@ fun ModernSettingsScreen(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Enable Coreply",
+                        text = "Enable Cooperate",
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Text(
-                        text = "Toggle the main Coreply accessibility service",
+                        text = "Toggle the main Cooperate accessibility service",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -102,6 +100,43 @@ fun ModernSettingsScreen(
                 )
             }
         }
+
+        // Warning Section
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.errorContainer
+            )
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Warning,
+                    contentDescription = "Warning",
+                    tint = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.padding(end = 12.dp)
+                )
+                Column {
+                    Text(
+                        text = "Disclaimer",
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onErrorContainer,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Text(
+                        text = "This project is in early development stage. It is only intended to demonstrate the abilities of LLMs operating smartphones. You are giving the app extensive permissions, including reading your screen content and operating on your behalf. The developer of this app is not liable for any costs, damages or data loss that may occur from using this app. Please use at your own risk.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onErrorContainer
+                    )
+                }
+            }
+        }
+
         CustomApiSettingsSection(viewModel)
 
 
@@ -224,5 +259,3 @@ fun CustomApiSettingsSection(viewModel: SettingsViewModel) {
         }
     }
 }
-
-

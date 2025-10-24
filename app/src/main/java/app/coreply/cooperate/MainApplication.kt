@@ -1,7 +1,7 @@
 /**
- * coreply
+ * Cooperate
  *
- * Copyright (C) 2024 coreply
+ * Copyright (C) 2025 Cooperate
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,10 +18,10 @@
  */
 
 
-package app.coreply.coreplyapp
+package app.coreply.cooperate
 
 import android.app.Application
-import app.coreply.coreplyapp.utils.PreferenceHelper
+import app.coreply.cooperate.utils.PreferenceHelper
 
 /**
  * Created on 1/25/17.

@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp.utils
+package app.coreply.cooperate.utils
 
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
@@ -21,17 +21,16 @@ object GlobalPref {
     }
 
     fun isAccessibilityEnabled(context: Context?): Boolean {
-        return isAccessibilityEnabled(context, "app.coreply.coreplyapp.SettingsActivity")
+        return isAccessibilityEnabled(context, "app.coreply.cooperate.SettingsActivity")
     }
 
     fun getFirstRunActivityPageNumber(context: Context?, activityName: String): Int {
-        if (!Settings.canDrawOverlays(context)) return 1 //page=1 means enable draw over other apps page
-        else if (!isAccessibilityEnabled(context, activityName)) {
+        if (!isAccessibilityEnabled(context, activityName)) {
             return 2 //page=2 means enable accessibility page
         }
         return 4
     }
     fun getFirstRunActivityPageNumber(context: Context?): Int {
-        return getFirstRunActivityPageNumber(context, "app.coreply.coreplyapp.SettingsActivity")
+        return getFirstRunActivityPageNumber(context, "app.coreply.cooperate.SettingsActivity")
     }
 }

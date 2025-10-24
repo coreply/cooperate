@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp.theme
+package app.coreply.cooperate.theme
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF006B60)

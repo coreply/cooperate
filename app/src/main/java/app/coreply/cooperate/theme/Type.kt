@@ -1,11 +1,11 @@
-package app.coreply.coreplyapp.theme
+package app.coreply.cooperate.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.FontFamily
 
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.googlefonts.Font
-import app.coreply.coreplyapp.R
+import app.coreply.cooperate.R
 
 val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",

@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp
+package app.coreply.cooperate
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,11 +7,31 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -19,8 +39,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import app.coreply.coreplyapp.theme.CoreplyTheme
-import app.coreply.coreplyapp.utils.GlobalPref.isAccessibilityEnabled
+import app.coreply.cooperate.theme.CooperateTheme
 
 class WelcomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +49,7 @@ class WelcomeActivity : ComponentActivity() {
         val page = intent.getIntExtra("page", 0)
         
         setContent {
-            CoreplyTheme {
+            CooperateTheme {
                 WelcomeScreen(
                     page = page,
                     onFinish = { finish() }
@@ -61,46 +80,45 @@ fun WelcomeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             when (page) {
-                1 -> PermissionContent(
-                    title = "Enable Overlay Permission",
-                    description = "Coreply needs permission to display suggestions over other apps. This allows the app to show AI-powered text suggestions while you\'re typing in messaging apps.",
-                    cardColors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer
-                    ),
-                    cardHorizontalAlignment = Alignment.CenterHorizontally,
-                    cardContent = {
-                        Text(
-                            text = "📱",
-                            style = MaterialTheme.typography.headlineLarge
-                        )
-                        Text(
-                            text = "This permission is safe and only used to show text suggestions",
-                            style = MaterialTheme.typography.bodyMedium,
-                            textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    },
-                    buttonContent = {
-                        Button(
-                            onClick = {
-                                if (!isAccessibilityEnabled(context)) {
-                                    // Navigate to accessibility permission
-                                    val intent = Intent(context, WelcomeActivity::class.java)
-                                    intent.putExtra("page", 2)
-                                    context.startActivity(intent)
-                                }
-                                context.startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
-                                onFinish()
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Text("Open Settings")
-                        }
-                    }
-                )
                 2 -> PermissionContent(
                     title = "Accessibility Service Disclosure",
-                    description = "Coreply uses the Accessibility Service to read on-screen messages and locate text fields in messaging apps. This is necessary for providing inline context aware texting suggestions.",
+                    description = "Cooperate uses the Accessibility Service to obtain on-screen content and perform actions.",
+                    disclaimerContent = {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.errorContainer
+                            )
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(16.dp),
+                                verticalAlignment = Alignment.Top
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Warning,
+                                    contentDescription = "Warning",
+                                    tint = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.padding(end = 12.dp)
+                                )
+                                Column {
+                                    Text(
+                                        text = "Disclaimer",
+                                        style = MaterialTheme.typography.titleSmall,
+                                        fontWeight = FontWeight.Bold,
+                                        color = MaterialTheme.colorScheme.onErrorContainer,
+                                        modifier = Modifier.padding(bottom = 8.dp)
+                                    )
+                                    Text(
+                                        text = "This project is in early development stage. It is only intended to demonstrate the abilities of LLMs operating smartphones. You are giving the app extensive permissions, including reading your screen content and operating on your behalf. The developer of this app is not liable for any costs, damages or data loss that may occur from using this app. Please use at your own risk.",
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onErrorContainer
+                                    )
+                                }
+                            }
+                        }
+                    },
                     cardColors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer
                     ),
@@ -113,7 +131,7 @@ fun WelcomeScreen(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "1. Open Accessibility Settings\n2. Select Coreply in the list of apps.\n3. Toggle on the switch",
+                            text = "1. Open Accessibility Settings\n2. Select Cooperate in the list of apps.\n3. Toggle on the switch",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
@@ -140,7 +158,8 @@ fun WelcomeScreen(
                 )
                 3 -> PermissionContent(
                     title = "Disable Accessibility Service",
-                    description = "To turn off Coreply, you need to disable the accessibility service in your device settings.",
+                    description = "To turn off Cooperate, you need to disable the accessibility service in your device settings.",
+                    disclaimerContent = null,
                     cardColors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.errorContainer
                     ),
@@ -153,7 +172,7 @@ fun WelcomeScreen(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Disabling the accessibility service will stop all Coreply features. You can re-enable it anytime from the app settings.",
+                            text = "Disabling the accessibility service will stop all Cooperate features. You can re-enable it anytime from the app settings.",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onErrorContainer
                         )
@@ -186,6 +205,7 @@ fun WelcomeScreen(
 private fun ColumnScope.PermissionContent(
     title: String,
     description: String,
+    disclaimerContent: (@Composable () -> Unit)? = null,
     cardColors: CardColors,
     cardHorizontalAlignment: Alignment.Horizontal = Alignment.Start,
     cardContent: @Composable ColumnScope.() -> Unit,
@@ -194,7 +214,7 @@ private fun ColumnScope.PermissionContent(
     // App icon
     Image(
         painter = painterResource(id = R.mipmap.ic_launcher_foreground),
-        contentDescription = "Coreply Icon",
+        contentDescription = "Cooperate Icon",
         modifier = Modifier.size(100.dp)
     )
     
@@ -212,6 +232,8 @@ private fun ColumnScope.PermissionContent(
         color = MaterialTheme.colorScheme.onSurfaceVariant
     )
     
+    disclaimerContent?.invoke()
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = cardColors

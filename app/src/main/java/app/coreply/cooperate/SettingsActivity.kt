@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp
+package app.coreply.cooperate
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,8 +18,8 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.material3.Text as ComposeText
-import app.coreply.coreplyapp.ui.compose.ModernSettingsScreen
-import app.coreply.coreplyapp.theme.CoreplyTheme
+import app.coreply.cooperate.ui.compose.ModernSettingsScreen
+import app.coreply.cooperate.theme.CooperateTheme
 
 /**
  * Created on 12/24/16.
@@ -32,7 +32,7 @@ class SettingsActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-            CoreplyTheme {
+            CooperateTheme {
                 Scaffold(
                     modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                     topBar = {
@@ -46,7 +46,7 @@ class SettingsActivity : ComponentActivity() {
                                 )
                             },
                             title = {
-                                ComposeText("Coreply", maxLines = 1,fontWeight = FontWeight.Black,)
+                                ComposeText("Cooperate", maxLines = 1,fontWeight = FontWeight.Black,)
                             }
                         )
                     }

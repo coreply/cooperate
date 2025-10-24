@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp.utils
+package app.coreply.cooperate.utils
 
 import android.content.Context
 import android.content.SharedPreferences

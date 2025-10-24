@@ -1,4 +1,4 @@
-package app.coreply.coreplyapp.ui.viewmodel
+package app.coreply.cooperate.ui.viewmodel
 
 import android.app.Application
 import android.content.Context
@@ -7,8 +7,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import app.coreply.coreplyapp.data.PreferencesManager
-import app.coreply.coreplyapp.utils.GlobalPref
+import app.coreply.cooperate.data.PreferencesManager
+import app.coreply.cooperate.utils.GlobalPref
 import kotlinx.coroutines.launch
 
 data class SettingsUiState(
