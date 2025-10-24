@@ -12,6 +12,8 @@ screen content and operating on your behalf. I am not liable for any costs, dama
 that may
 occur from using this app. Please use at your own risk.**
 
+---
+
 **Cooperate** is an open-source Android app giving large language models (LLMs) the ability to
 interact with Android apps. Currently, only some Claude models are tested.
 
@@ -65,7 +67,7 @@ button is not working and you want to stop the app, try to:
 
 ## Setup with Openrouter
 
-1. Get your API Keys [here](https://console.groq.com/keys)
+1. Get your API Keys [here](https://openrouter.ai/settings/keys)
 2. Set the API Endpoint to `https://openrouter.ai/api/v1` and the model name
    to `anthropic/claude-haiku-4.5`, `anthropic/claude-sonnet-4.5`, `anthropic/claude-sonnet-4` or other models you wish to test with.
 3. Set the API Key to the key you got in step 1.
