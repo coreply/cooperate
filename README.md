@@ -1,61 +1,60 @@
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/coreply/coreply/total)
-![GitHub Tag](https://img.shields.io/github/v/tag/coreply/coreply)
-![GitHub License](https://img.shields.io/github/license/coreply/coreply)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/coreply/cooperate/total)
+![GitHub Tag](https://img.shields.io/github/v/tag/coreply/cooperate)
+![GitHub License](https://img.shields.io/github/license/coreply/cooperate)
 
-![Coreply banner](./docs/static/narrowbanner.png)
-**Coreply** is an open-source Android app designed to make texting faster and smarter by providing texting suggestions while you type. Whether you're replying to friends, family, or colleagues, Coreply enhances your typing experience with intelligent, context-aware suggestions.
+![Cooperate banner](./docs/static/cooperate_banner.png)
 
-## Supported Texting Apps
+# ⚠️Disclaimer
 
-| App | Screenshot | Remarks (See notes below) |
-|-----|------------|---------------------------|
-| **WhatsApp** | ![](./docs/static/whatsapp.gif) |                           |
-| **Instagram** | ![](./docs/static/insta.gif) |                           |
-| **Tinder** | ![](./docs/static/tinder.gif) |                           |
-| **Signal** | ![](./docs/static/signal.gif) |                           |
-| **Notification Replies** | ![](./docs/static/notifications.gif) | 1,2                       |
-| **Hinge** | _no screenshot yet_ |                           |
-| **LINE** | _no screenshot yet_ |                           |
-| **Heymandi** | _no screenshot yet_ |                           |
-| **Gmail** | _no screenshot yet_ | 3                         |
-| **Telegram** | _no screenshot yet_ |                           |
-| **Mattermost** | _no screenshot yet_ | 2                         |
-| **Facebook Messenger** | _no screenshot yet_ | 1                         |
-| **Google Messages** | _no screenshot yet_ | 1                         |
-|**Snapchat** | _no screenshot yet_ | 2                         |
-|**Microsoft Teams** | _no screenshot yet_ |                           |
+**This project is in early development stage. It is only intended to demonstrate the abilities of LLMs
+operating smartphones. You are giving the app extensive permissions, including reading your
+screen content and operating on your behalf. I am not liable for any costs, damages or data loss
+that may
+occur from using this app. Please use at your own risk.**
 
-### Remarks
-1. Performance issues: Coreply may not follow smoothly the animations and transitions in the app.
-2. Limited role detection: Coreply cannot detect whether the message is sent or received.
-3. In Gmail, Coreply only works on the quick reply text field at the bottom of the email.
+**Cooperate** is an open-source Android app giving large language models (LLMs) the ability to
+interact with Android apps. Currently, only some Claude models are tested.
 
-_DISCLAIMER: Coreply is not affiliated with or endorsed by the above-mentioned apps or their parent companies._
+## Tested on these models via Openrouter
+
+| Model                 | Estimated cost per step* |
+|-----------------------|--------------------------|
+| **Claude 4.5 Haiku**  | $0.003-$0.005            |
+| **Clause 4.5 Sonnet** | $0.01-$0.015             |
+| **Claude 4 Sonnet**   | $0.01-$0.015             |
+
+* Each step means sending one request to the model, that normally results in performing one action
+  such as clicking or going back. Costs estimations are for reference only. Your bill could go up
+  high easily. I am not responsible for any charges incurred by using this app.
 
 ## Features
 
-<div align="center">
-  <img src="./docs/static/coreply_demo.gif" width="360" />
-</div>
+You enter a prompt, the app sends your prompt and the current screenshot to the LLM, then
+performs whatever action the LLM requests, and repeats the process until the LLM no longer
+requests any action.
 
--   **Real-time AI Suggestions**: Get accurate, context-aware suggestions as you type.
--   **Customizable LLM Settings**: Supports any inference service having an OpenAI compatible API.
--   **No Data Collection**: All traffic goes directly to the inference API. No data passes through intermediate servers (except for the hosted version).
+## Safety
+
+A stop button is displayed at the top of the screen when the app is executing the task. The button
+is a kill switch that calls `disableSelf()` on the accessibility service. By clicking on that, the
+app should immediately lose the ability to control your device. **You must re-enable the
+accessibility service manually to start a new task.**
+
+In extremely unlikely circumstances where the
+button is not working and you want to stop the app, try to:
+
+- Uninstall the app
+- Turn on airplane mode
+- Restart your phone
+- Cut off internet connection by removing SIM card or turning off your router.
 
 ## Getting Started
 
 ### Prerequisites
 
--   Device running **Android 10 or higher** (Android 13 or higher recommended)
--   API key for OpenAI or an OpenAI-compatible inference service, such as [Groq](https://console.groq.com/) and [Openrouter](https://openrouter.ai/)
-
-### Installation & Usage
-
-1. Download the latest APK from the [releases page](https://github.com/coreply/coreply/releases)
-2. Install the APK on your Android device.
-3. Setup the app with your API key, baseURL (if not using OpenAI) and model name.
-4. Toggle the switch and grant necessary permissions to enable the service. If you encountered the "Restricted settings" dialog, you can follow [these steps](https://support.google.com/android/answer/12623953?hl=en).
-5. Start typing in your messaging app, and see suggestions appear! Single tap on the suggestion to insert one word, or long press to insert the entire suggestion.
+- Device running **Android 11 or higher**
+- API key for an OpenAI-compatible API endpoint inference service, such
+  as [Openrouter](https://openrouter.ai/)
 
 ### Build From Source
 
@@ -64,40 +63,27 @@ _DISCLAIMER: Coreply is not affiliated with or endorsed by the above-mentioned a
 3. Sync the Gradle files and resolve any dependencies.
 4. Build and run the app on your preferred device or emulator.
 
-## Model Selection
-
-See [Model Selection & Providers](./docs/models.md) for details.
-
-## How does it work?
-
-See [Model Selection & Providers](./docs/models.md) for details.
-
-## Example setup with Groq
+## Setup with Openrouter
 
 1. Get your API Keys [here](https://console.groq.com/keys)
-2. In the coreply app, set the API Endpoint to `https://api.groq.com/openai/v1/` and the model name to `gemma2-9b-it`, `llama-3.3-70b-versatile`, `llama-3.1-8b-instant`, or any other model listed [here](https://console.groq.com/docs/models)
+2. Set the API Endpoint to `https://openrouter.ai/api/v1` and the model name
+   to `anthropic/claude-haiku-4.5`, `anthropic/claude-sonnet-4.5`, `anthropic/claude-sonnet-4` or other models you wish to test with.
 3. Set the API Key to the key you got in step 1.
-4. Grant the necessary permissions as described in the installation section. And you are good to go!
 
 ## Contributing
 
-All contributions are welcome! However, the code was based on an old project in 2016, so please be patient with the code quality and expect major architectural changes in the future.
-
-## Known Issues
-
--   The app cannot read images, videos, voice notes, or other non-text content. Contextual suggestions may be limited in these cases.
--   Hint text 'Message' in WhatsApp is treated as typed text on devices running Android 12 or lower.
--   Banking apps in asia commonly block apps from unknown sources having accessibility services permission due to security reasons. If you are facing this issue, you can setup [an accessibility shortcut](https://support.google.com/accessibility/android/answer/7650693?hl=en#step_1) to toggle the coreply on/off quickly. In the future there might be a Play Store listing to avoid this issue.
+Currently the code is messy and not well documented. Please open an issue and discuss in advance
+before making contributions.
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=coreply/coreply&type=Date)](https://www.star-history.com/#coreply/coreply&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=coreply/cooperate&type=Date)](https://www.star-history.com/#coreply/coreply&Date)
 
 ## License Notice
 
-Coreply
+Cooperate
 
-Copyright (C) 2024 Coreply
+Copyright (C) 2025 Cooperate
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
