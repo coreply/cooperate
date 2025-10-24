@@ -5,10 +5,10 @@ plugins {
 }
 
 android {
-    namespace = "app.coreply.coreplyapp"
+    namespace = "app.coreply.cooperate"
     compileSdk = 35
     defaultConfig {
-        applicationId = "app.coreply.coreplyapp"
+        applicationId = "app.coreply.cooperate"
         minSdk = 30
         targetSdk = 35
         versionCode = 8
@@ -44,12 +44,13 @@ val kotlin_version: String by project
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("com.aallam.openai:openai-client:3.8.2")
+    implementation("com.aallam.openai:openai-client:4.0.1")
     implementation("io.ktor:ktor-client-android:$ktor_version")
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
-    
+    debugImplementation(libs.androidx.ui.tooling)
+
     val preferenceVersion = "1.2.1"
     implementation("androidx.preference:preference-ktx:$preferenceVersion")
     

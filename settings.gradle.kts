@@ -18,5 +18,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "coreply"
+rootProject.name = "cooperate"
 include(":app")
