@@ -25,7 +25,6 @@ import android.accessibilityservice.AccessibilityServiceInfo
 import android.accessibilityservice.GestureDescription
 import android.accessibilityservice.GestureDescription.StrokeDescription
 import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Path
